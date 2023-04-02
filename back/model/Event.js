@@ -1,3 +1,3 @@
-export default Event = {
+export default Event = Object.freeze({
     MOVE: 1 
-}
+});
