@@ -1,14 +1,21 @@
-// import StackNode from './StackNode.js'
-const StackNode = require('./StackNode');
+import StackNode from './StackNode.js'
+// const StackNode = require('./StackNode');
 
-class Stack {
+export default class Stack {
 
     constructor() {
         this.tope = null;
         this.size = 0;
     }
 
-    stack(node) {
+    stack(data) {
+        let node;
+        
+        if (typeof data === 'StackNode') {
+            node = data;
+        }
+        else node = new StackNode(data);
+
         if (this.size == 0) {
             this.tope = node;
         }
@@ -16,6 +23,7 @@ class Stack {
             this.tope.stack(node);
             this.tope = node;
         }
+
         this.size++;
     }
 

@@ -1,4 +1,4 @@
-class StackNode {
+export default class StackNode {
     
     constructor(content, ) {
         this.downNode = null;
@@ -22,5 +22,3 @@ class StackNode {
     }
 
 };
-
-module.exports = StackNode;
