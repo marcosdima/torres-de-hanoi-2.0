@@ -1,16 +1,12 @@
+import Stack from '../model/TADs/stack/Stack.js'
+
 export default class Tower {
-    static count = 0;
-    constructor(fistTower = false, size = 3) {
-        this.id = null;
-        this.plates = new Array(size);
+    constructor(fistTower = false, size = 3, towerNumber) {
+        this.id = towerNumber;
+        this.plates = new Stack();
         
         setId();
         if (firstTower) setTower(size);
-    }
-
-    setId() {
-        this.count += 1;
-        this.id = this.count;
     }
 
     setTower(size) {
@@ -19,7 +15,15 @@ export default class Tower {
         };
     }
 
-    getDisc() {
+    getPlate() {
+        return this.plates.unStack().content;
+    }
 
+    stackPlate(plate) {
+        this.plates.stack(plate);
+    }
+
+    getFormat() {
+        return this.plates.getString();
     }
 }
