@@ -1,18 +1,16 @@
-import Tower from "./Tower";
+import Tower from "./Tower.js";
 
 export default class Board {
-    constructor(numberOfTowers = 3) {
+    constructor(numberOfTowers) {
         this.numberOfTowers = numberOfTowers;
         this.towers = [];
-        this.controllers = [];
-
         this.getReady();
     }
 
     getReady() {
-        for (let i = 0; i < this.numberOfTowers; i--) {
-            fistTower = (i == 1);
-            let newTower = new Tower(fistTower, i);
+        for (let i = 0; i < this.numberOfTowers; i++) {
+            let firstTower = (i == 0);
+            let newTower = new Tower(firstTower, 3, i);
             this.towers.push(newTower);
         };
     }
@@ -22,17 +20,6 @@ export default class Board {
         if (plate) {
             this.towers.get(towerTarget).stackPlate(plate);
         }
-        this.notify(Event.MOVE)
         return plate;
-    }
-
-    addController(controller) {
-        this.controllers.push(controller);
-    }
-
-    notify(event, data = null) {
-        for (controller of this.controllers) {
-            controller.update(event, data);
-        }
     }
 }

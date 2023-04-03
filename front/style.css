@@ -1,0 +1,32 @@
+.golden {
+    border: solid;
+    padding: 2rem;
+}
+
+body {
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+    width: 5rem;
+    height: 2rem;
+}
+
+#tower {
+    flex-direction: row;
+}
+
+.disk {
+    text-align: center;
+    border: solid;
+}
