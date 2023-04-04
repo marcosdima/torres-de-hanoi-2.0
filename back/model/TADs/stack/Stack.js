@@ -3,39 +3,45 @@ import StackNode from './StackNode.js'
 
 export default class Stack {
 
-    constructor() {
+    constructor(maxSize=0) {
         this.tope = null;
         this.size = 0;
+        this.maxSize = maxSize;
     }
 
     stack(data) {
-        let node;
         
-        if (typeof data === 'StackNode') {
-            node = data;
-        }
-        else node = new StackNode(data);
+        if (this.size <= this.maxSize) {
+            let node;
 
-        if (this.size == 0) {
-            this.tope = node;
-        }
-        else {
-            this.tope.stack(node);
-            this.tope = node;
-        }
+            // Check if data isn't a StackNode, in that case initialice it as one.
+            if (typeof data === 'StackNode') {
+                node = data;
+            }
+            else node = new StackNode(data);
 
-        this.size++;
+            if (this.size == 0) {
+                this.tope = node;
+            }
+            else {
+                this.tope.stack(node);
+                this.tope = node;
+            }
+            
+            this.size++;
+        }
     }
 
     unStack() {
-        const node = this.tope;
-        if (node.downNode) {
+        let node = this.tope;
+
+        if (node?.downNode) {
             this.tope = this.tope.downNode;
             this.tope.removeUpNode()
             this.size--;
         }
         else {
-            this.node = null;
+            this.tope = null;
             this.size = 0;
         }
         return node;
@@ -56,6 +62,27 @@ export default class Stack {
 
         string = string.trim();
         return string;
+    }
+
+    getArray() {
+        let auxStack = new Stack(this.maxSize);
+        let array = [];
+        const emptySpace = this.maxSize - this.size;
+        const size = this.size;
+
+        for (let i = 0; i < emptySpace; i++) {
+            array.push(0);
+        } 
+
+        for (let i = 0; i < size; i++) {
+            let node = this.unStack();
+            array.push(node?.content);
+            auxStack.stack(node);
+        }
+
+        if (this.size != size) this.fuseStacks(this, auxStack);
+
+        return array;
     }
 
     fuseStacks(stackTarget, stackAux) {

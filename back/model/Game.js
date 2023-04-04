@@ -21,7 +21,7 @@ export default class Game {
         const parts = instruction.split(' ');
         const data = {
             selected: parts[0],
-            target: parts[2]
+            target: parts[1]
         };
         return data;
     }

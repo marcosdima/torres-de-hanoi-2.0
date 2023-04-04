@@ -3,7 +3,7 @@ import Stack from '../model/TADs/stack/Stack.js'
 export default class Tower {
     constructor(firstTower = false, size = 3, towerNumber) {
         this.id = towerNumber;
-        this.plates = new Stack();
+        this.plates = new Stack(size);
         this.size = size;
         if (firstTower) this.setTower(size);
     }
@@ -22,7 +22,11 @@ export default class Tower {
         this.plates.stack(plate);
     }
 
-    getFormat() {
+    getStringFormat() {
         return this.plates.getString();
+    }
+
+    getFormat() {
+        return this.plates.getArray();
     }
 }
