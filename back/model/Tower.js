@@ -1,17 +1,10 @@
 import Stack from '../model/TADs/stack/Stack.js'
 
 export default class Tower {
-    constructor(firstTower = false, size = 3, towerNumber) {
+    constructor(size = 3, towerNumber) {
         this.id = towerNumber;
         this.plates = new Stack(size);
         this.size = size;
-        if (firstTower) this.setTower(size);
-    }
-
-    setTower(size) {
-        for (let i = size; i > 0; i--) {
-            this.plates.stack(i);
-        };
     }
 
     getPlate() {
@@ -19,7 +12,16 @@ export default class Tower {
     }
 
     stackPlate(plate) {
-        this.plates.stack(plate);
+        let returnPlate = null
+
+        // Si la torre no tiene nada, se apila directamente.
+        if (!this.plates.tope) this.plates.stack(plate);
+        // Si el plato a apilar es de un tamaño menor al plato tope, se apila.
+        else if (plate < this.plates.tope.content) this.plates.stack(plate);
+        // Caso contrario, devolvemos el plato.
+        else returnPlate = plate;
+
+        return returnPlate;
     }
 
     getStringFormat() {

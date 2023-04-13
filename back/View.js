@@ -3,6 +3,8 @@ import Game from './model/Game.js';
 
 export function setTowers(data) {
     const target = document.getElementById('tower');
+    target.innerHTML = "";
+    console.log(data);
     // Create the towers.
     for (let element of data) {
         let tower = makeATower(element);
@@ -14,7 +16,7 @@ export function setTowers(data) {
 function makeATower(data) {
     let div = document.createElement('div');
     let arrayAux = [];
-    console.log(data)
+
     // Set the 'Platos'.
     for (let element of data?.content) {
         
@@ -29,6 +31,7 @@ function makeATower(data) {
         
         p.innerHTML = plato;
         p.className= 'flex-center disk';
+        p.id = 'main-board'
         arrayAux.push(p);  
     }
 
@@ -45,10 +48,9 @@ let controller = new Controller(game);
 
 const boton = document.getElementById('mi-boton');
 boton.addEventListener('click', () => {
-    game.move('0 2')
-    game.move('0 2')
     game.move('0 1')
-    game.move('2 1')
-    game.move('2 1')
+    game.move('0 1')
     setTowers(controller.getTowers());
+    
+    // setTowers(controller.getTowers());
 });

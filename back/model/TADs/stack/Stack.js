@@ -10,8 +10,7 @@ export default class Stack {
     }
 
     stack(data) {
-        
-        if (this.size <= this.maxSize) {
+        if ((this.size <= this.maxSize) && (data)) {
             let node;
 
             // Check if data isn't a StackNode, in that case initialice it as one.
@@ -19,10 +18,12 @@ export default class Stack {
                 node = data;
             }
             else node = new StackNode(data);
-
+        
+            // Check if it's the first plate.
             if (this.size == 0) {
                 this.tope = node;
             }
+            // If isn't, does the change of tope.
             else {
                 this.tope.stack(node);
                 this.tope = node;
