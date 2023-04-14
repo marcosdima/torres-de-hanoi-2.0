@@ -24,7 +24,8 @@ export default class Board {
 
     move(towerChoosed, towerTarget) {
         let returnPlate = null
-        const plate = this.towers[towerChoosed].getPlate();
+        console.log(this.towers)
+        let plate = this.towers[towerChoosed].getPlate();
         
         if (plate) returnPlate = this.towers[towerTarget].stackPlate(plate);
         if (returnPlate) this.towers[towerChoosed].stackPlate(returnPlate);

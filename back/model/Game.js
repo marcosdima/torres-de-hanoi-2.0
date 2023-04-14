@@ -28,6 +28,7 @@ export default class Game {
 
     getTowers() {
         let result = [];
+        
         for (let tower of this.board.towers) {
             let element = {
                 number: tower.id,

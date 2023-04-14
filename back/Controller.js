@@ -6,6 +6,10 @@ export default class Controller {
         this.model = model;
         this.views = [];
         this.model.addController(this);
+
+    }
+
+    start() {
         this.model.initialize();
     }
 
@@ -17,15 +21,19 @@ export default class Controller {
         return this.model.getTowers();
     }
 
-    update(event, data) {
+    move(movement) {
+        this.model.move(movement);
+    }
+
+    update(event, data = null) {
         for (let view of this.views) {
             switch(event) {
                 case Event.START:
-                    console.log('Comenzar!')
+                    view.setTowers();
                     break;
                     
                 case Event.MOVE:
-                    console.log("Llegó al update!")
+                    view.setTowers();
                     break;
                 default:
                     console.log('No Event detected :(')

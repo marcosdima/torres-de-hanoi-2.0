@@ -75,23 +75,30 @@ export default class Stack {
             array.push(0);
         } 
 
-        for (let i = 0; i < size; i++) {
-            let node = this.unStack();
-            array.push(node?.content);
-            auxStack.stack(node);
-        }
+        if (!this.isEmpty()) {
+            for (let i = 0; i < size; i++) {
+                let node = this.unStack();
+                array.push(node?.content);
+                auxStack.stack(node.content);
+            }
 
-        if (this.size != size) this.fuseStacks(this, auxStack);
+            if (this.size != size) this.fuseStacks(this, auxStack);
+        }
 
         return array;
     }
 
     fuseStacks(stackTarget, stackAux) {
         const size = stackAux.size;
+        stackTarget.tope = null;
         for (let i = 0; i < size; i++) {
             const node = stackAux.unStack();
-            stackTarget.stack(node);
+            stackTarget.stack(node.content);
         } 
+    }
+
+    isEmpty() {
+        return (this.size == 0);
     }
 }
 

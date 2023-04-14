@@ -8,7 +8,8 @@ export default class Tower {
     }
 
     getPlate() {
-        return this.plates.unStack().content;
+        // En un futuro, habría que hacer que salte el error.
+        return this.plates?.unStack()?.content;
     }
 
     stackPlate(plate) {
