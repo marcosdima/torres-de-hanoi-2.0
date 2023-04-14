@@ -32,4 +32,12 @@ export default class Tower {
     getFormat() {
         return this.plates.getArray();
     }
+
+    isFull() {
+        return this.plates.isFull();
+    }
+
+    isEmpty() {
+        return this.plates.isEmpty();
+    }
 }

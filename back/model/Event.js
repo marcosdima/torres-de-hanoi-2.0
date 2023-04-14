@@ -1,4 +1,4 @@
 export default Event = Object.freeze({
-    START: 1,
-    MOVE: 2
+    UPDATE: 1,
+    WON: 2
 });

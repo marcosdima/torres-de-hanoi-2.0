@@ -3,18 +3,21 @@ import Event from './Event.js'
 
 export default class Game {
     constructor(numberOfTowers = 3) {
-        this.board = new Board(numberOfTowers);
+        this.board = null;
+        this.numberOfTowers = numberOfTowers;
         this.controllers = [];
     }
 
     initialize() {
-        this.notify(Event.START)
+        this.board = new Board(this.numberOfTowers);
+        this.notify(Event.UPDATE);
     }
 
     move(instruction) {
         const { selected, target } = this.decode(instruction);
         this.board.move(selected, target);
-        this.notify(Event.MOVE)
+        this.notify(Event.UPDATE);
+        if (this.checkWinning()) this.notify(Event.WON);
     }
 
     decode(instruction) {
@@ -42,6 +45,16 @@ export default class Game {
 
     addController(controller) {
         this.controllers.push(controller);
+    }
+
+    checkWinning() {
+        let win = false;
+        for (let tower of this.board.towers) {
+            if (tower.isFull() && tower.id != 0) {
+                win = true;
+            };
+        };
+        return win;
     }
 
     notify(event, data = null) {

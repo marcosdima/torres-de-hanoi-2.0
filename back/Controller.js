@@ -28,12 +28,10 @@ export default class Controller {
     update(event, data = null) {
         for (let view of this.views) {
             switch(event) {
-                case Event.START:
+                case Event.UPDATE:
                     view.setTowers();
-                    break;
-                    
-                case Event.MOVE:
-                    view.setTowers();
+                case Event.WON:
+                    console.log('Ganaste pa!');
                     break;
                 default:
                     console.log('No Event detected :(')

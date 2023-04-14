@@ -2,7 +2,6 @@ import StackNode from './StackNode.js'
 // const StackNode = require('./StackNode');
 
 export default class Stack {
-
     constructor(maxSize=0) {
         this.tope = null;
         this.size = 0;
@@ -10,7 +9,7 @@ export default class Stack {
     }
 
     stack(data) {
-        if ((this.size <= this.maxSize) && (data)) {
+        if (!this.isFull() && (data)) {
             let node;
 
             // Check if data isn't a StackNode, in that case initialice it as one.
@@ -99,6 +98,10 @@ export default class Stack {
 
     isEmpty() {
         return (this.size == 0);
+    }
+
+    isFull() {
+        return (this.size == this.maxSize);
     }
 }
 
