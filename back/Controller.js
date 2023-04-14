@@ -30,6 +30,7 @@ export default class Controller {
             switch(event) {
                 case Event.UPDATE:
                     view.setTowers();
+                    break;
                 case Event.WON:
                     console.log('Ganaste pa!');
                     break;

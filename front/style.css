@@ -1,9 +1,10 @@
 body {
     flex-direction: column;
+    background-color: cadetblue;
 }
 
 h1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
 }
 
 button {
@@ -12,7 +13,7 @@ button {
 }
 
 .golden {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .flex-center {
@@ -39,4 +40,7 @@ button {
 
 #tower {
     flex-direction: row;
+    background-color: brown;
+    border: salmon solid;
+    border-width: 0.5rem;
 }
